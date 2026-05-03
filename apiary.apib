@@ -1,80 +1,105 @@
 FORMAT: 1A
-HOST: https://polls.apiblueprint.org/
+HOST: http://localhost:3456
 
-# sava.io
+# Sava.io API
+Dokumentasi API untuk sistem perbankan premium Sava.io. 
+Semua request manipulasi data menggunakan metode POST untuk keamanan tambahan.
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+## Authentication [/api/auth]
 
-## Questions Collection [/questions]
-
-### List All Questions [GET]
-
-+ Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+### Login [POST /api/auth/login]
+Masuk ke sistem untuk mendapatkan access token.
 
 + Request (application/json)
 
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
+            {
+                "username": "admin",
+                "password": "password"
+            }
+
++ Response 200 (application/json)
+
+            {
+                "access_token": "YWRtaW46YWNjZXNz...",
+                "user": {
+                    "username": "admin",
+                    "role": "admin"
+                }
+            }
+
+## Nasabah [/api/customers]
+
+### List Nasabah [POST /api/customers/list]
+Mengambil semua daftar nasabah.
+
++ Request (application/json)
+
+            {}
+
++ Response 200 (application/json)
+
+            {
+                "data": [
+                    { "id": 1, "name": "Budi Santoso" },
+                    { "id": 2, "name": "Siti Aminah" }
+                ],
+                "total": 2
+            }
+
+### Tambah Nasabah [POST /api/customers/create]
+Menambah nasabah baru ke sistem.
+
++ Request (application/json)
+
+            {
+                "name": "Jane Doe"
+            }
 
 + Response 201 (application/json)
 
-    + Headers
+            { "id": 3, "name": "Jane Doe" }
 
-            Location: /questions/2
+## Rekening [/api/accounts]
 
-    + Body
+### List Rekening [POST /api/accounts/list]
+Daftar semua rekening aktif.
+
++ Request (application/json)
+
+            {}
+
++ Response 200 (application/json)
 
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
+                "data": [
+                    { 
+                        "id": 1, 
+                        "account_id": "ACC-001", 
+                        "customer_id": 1, 
+                        "balance": 5000000 
                     }
                 ]
+            }
+
+## Transaksi [/api/transactions]
+
+### Buat Transaksi [POST /api/transactions/create]
+Melakukan setoran (DEPOSIT) atau penarikan (WITHDRAW).
+
++ Request (application/json)
+
+            {
+                "account_id": 1,
+                "transaction_type": "DEPOSIT",
+                "amount": 1000000,
+                "transaction_date": "2024-05-01"
+            }
+
++ Response 201 (application/json)
+
+            {
+                "id": 101,
+                "status": "success",
+                "amount": 1000000,
+                "ending_balance": 6000000
             }
