@@ -46,6 +46,12 @@ func (r *accountRepository) Update(account *entity.Account) (entity.Account, boo
 }
 
 func (r *accountRepository) Delete(id int64) bool {
+	// Distinguish "not found" vs "cannot delete due to FK".
+	var existing entity.Account
+	if err := r.store.DB.First(&existing, id).Error; err != nil {
+		return false
+	}
+
 	result := r.store.DB.Delete(&entity.Account{}, id)
-	return result.RowsAffected > 0
+	return result.Error == nil && result.RowsAffected > 0
 }

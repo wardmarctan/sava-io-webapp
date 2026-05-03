@@ -93,8 +93,18 @@ func (ctrl *AccountController) Delete(c echo.Context) error {
 	if err := c.Bind(&payload); err != nil {
 		return c.JSON(http.StatusBadRequest, response.MessageResponse{Message: accountInvalidIDMessage})
 	}
+	if payload.ID == 0 {
+		return c.JSON(http.StatusBadRequest, response.MessageResponse{Message: accountInvalidIDMessage})
+	}
 
-	if !ctrl.service.Delete(payload.ID) {
+	ok := ctrl.service.Delete(payload.ID)
+	if !ok {
+		// If delete failed but record exists, it's most likely FK constraint (has transactions).
+		if _, exists := ctrl.service.GetByID(payload.ID); exists {
+			// sqlite/gorm error text varies; keep message stable for UI.
+			msg := "account cannot be deleted because it has transactions"
+			return c.JSON(http.StatusBadRequest, response.MessageResponse{Message: msg})
+		}
 		return c.JSON(http.StatusNotFound, response.MessageResponse{Message: accountNotFoundMessage})
 	}
 
