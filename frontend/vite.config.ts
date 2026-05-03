@@ -9,6 +9,7 @@ import tailwindcss from '@tailwindcss/vite'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
+  base: '/sava-io/',
   plugins: [
     tailwindcss(),
     react(),

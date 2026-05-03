@@ -12,50 +12,55 @@ import { getAccessToken } from '@/lib/storage'
 import { Toaster } from 'sonner'
 
 function App() {
-  const router = createBrowserRouter([
+  const router = createBrowserRouter(
+    [
+      {
+        element: <AuthLayout />,
+        children: [
+          { path: '/login', element: <LoginPage /> },
+        ],
+      },
+      {
+        path: '/',
+        element: <Navigate to="/dashboard" replace />,
+      },
+      {
+        path: '/dashboard',
+        element: getAccessToken() ? <DashboardPage /> : <Navigate to="/login" replace />,
+      },
+      {
+        path: '/customers',
+        element: getAccessToken() ? <CustomersPage /> : <Navigate to="/login" replace />,
+      },
+      {
+        path: '/accounts',
+        element: getAccessToken() ? <AccountsPage /> : <Navigate to="/login" replace />,
+      },
+      {
+        path: '/deposito-types',
+        element: getAccessToken() ? <DepositoTypesPage /> : <Navigate to="/login" replace />,
+      },
+      {
+        path: '/deposit',
+        element: getAccessToken() ? <DepositPage /> : <Navigate to="/login" replace />,
+      },
+      {
+        path: '/withdraw',
+        element: getAccessToken() ? <WithdrawPage /> : <Navigate to="/login" replace />,
+      },
+      {
+        path: '/transaction-history',
+        element: getAccessToken() ? <TransactionHistoryPage /> : <Navigate to="/login" replace />,
+      },
+      {
+        path: '*',
+        element: <Navigate to="/login" replace />,
+      },
+    ],
     {
-      element: <AuthLayout />,
-      children: [
-        { path: '/login', element: <LoginPage /> },
-      ],
-    },
-    {
-      path: '/',
-      element: <Navigate to="/dashboard" replace />,
-    },
-    {
-      path: '/dashboard',
-      element: getAccessToken() ? <DashboardPage /> : <Navigate to="/login" replace />,
-    },
-    {
-      path: '/customers',
-      element: getAccessToken() ? <CustomersPage /> : <Navigate to="/login" replace />,
-    },
-    {
-      path: '/accounts',
-      element: getAccessToken() ? <AccountsPage /> : <Navigate to="/login" replace />,
-    },
-    {
-      path: '/deposito-types',
-      element: getAccessToken() ? <DepositoTypesPage /> : <Navigate to="/login" replace />,
-    },
-    {
-      path: '/deposit',
-      element: getAccessToken() ? <DepositPage /> : <Navigate to="/login" replace />,
-    },
-    {
-      path: '/withdraw',
-      element: getAccessToken() ? <WithdrawPage /> : <Navigate to="/login" replace />,
-    },
-    {
-      path: '/transaction-history',
-      element: getAccessToken() ? <TransactionHistoryPage /> : <Navigate to="/login" replace />,
-    },
-    {
-      path: '*',
-      element: <Navigate to="/login" replace />,
-    },
-  ])
+      basename: '/sava-io',
+    }
+  )
 
   return (
     <>
