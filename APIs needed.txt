@@ -1,0 +1,28 @@
+Authentication:
+POST /api/auth/login
+
+Customer:
+POST /api/customers/list
+POST /api/customers/get
+POST /api/customers/create
+POST /api/customers/update
+POST /api/customers/delete
+
+Account:
+POST /api/accounts/list
+POST /api/accounts/get
+POST /api/accounts/create
+POST /api/accounts/update
+POST /api/accounts/delete
+
+Deposito-type:
+GET /api/deposito-types
+POST /api/deposito-types/get
+POST /api/deposito-types/create
+POST /api/deposito-types/update
+POST /api/deposito-types/delete
+
+Transaction:
+POST /api/transactions/list
+POST /api/transactions/get
+POST /api/transactions/create

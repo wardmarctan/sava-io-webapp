@@ -139,7 +139,7 @@ export function DepositPage() {
                         <select
                           value={accountId}
                           onChange={(e) => setAccountId(e.target.value ? Number(e.target.value) : '')}
-                          className="flex h-11 w-full rounded-xl border border-[#d8cbe6] bg-[#f9f6fc] px-4 text-sm text-slate-900 transition-colors focus:border-[#4a1f6c] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#4a1f6c]"
+                          className="select"
                         >
                           <option value="" disabled>
                             {t('form.selectAccount')}

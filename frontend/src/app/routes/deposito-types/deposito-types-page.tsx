@@ -205,7 +205,8 @@ export function DepositoTypesPage() {
                         setPageSize(Number(e.target.value))
                         setPage(1)
                       }}
-                      className="rounded-md border border-[#d8cbe6] bg-[#efe7f7] px-2 py-1 text-sm outline-none focus:border-[#b89ed1]"
+                      className="select"
+                      style={{ paddingRight: '24px', minHeight: '32px' }}
                     >
                       <option value={10}>10</option>
                       <option value={20}>20</option>
