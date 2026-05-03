@@ -11,7 +11,11 @@ func NewDepositoTypeRepository(store *Store) DepositoTypeRepository {
 }
 
 func (r *depositoTypeRepository) List() []entity.DepositoType {
-	result := make([]entity.DepositoType, len(r.store.DepositoTypes))
-	copy(result, r.store.DepositoTypes)
-	return result
+	if r.store == nil || r.store.DB == nil {
+		return nil
+	}
+
+	var depositoTypes []entity.DepositoType
+	r.store.DB.Order("id asc").Find(&depositoTypes)
+	return depositoTypes
 }

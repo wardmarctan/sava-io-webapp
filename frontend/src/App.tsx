@@ -4,6 +4,7 @@ import { LoginPage } from '@/app/routes/authentication/login/login-page'
 import { DashboardPage } from '@/app/routes/dashboard/dashboard-page'
 import { CustomersPage } from '@/app/routes/customers/customers-page'
 import { getAccessToken } from '@/lib/storage'
+import { Toaster } from 'sonner'
 
 function App() {
   const router = createBrowserRouter([
@@ -27,7 +28,12 @@ function App() {
     },
   ])
 
-  return <RouterProvider router={router} />
+  return (
+    <>
+      <RouterProvider router={router} />
+      <Toaster richColors position="top-right" />
+    </>
+  )
 }
 
 export default App

@@ -23,7 +23,9 @@ func main() {
 	defer stop()
 
 	appConfig := config.Load()
-	store := repository.NewStore()
+	config.LoadDatabaseConfig()
+	db := config.ConnectDatabase()
+	store := repository.NewStore(db)
 
 	e := echo.New()
 	e.HideBanner = true
@@ -70,6 +72,11 @@ func main() {
 		if err := e.Shutdown(context.Background()); err != nil {
 			log.Fatal(err)
 		}
+	}
+
+	sqlDB, err := db.DB()
+	if err == nil {
+		_ = sqlDB.Close()
 	}
 }
 

@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: bank_database
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123how
+      POSTGRES_DB: sava_io_db
+    ports:
+      - "5432:5432"
+  backend:
+    build:
+      context: ./backend
+    container_name: sava_io_backend
+    depends_on:
+      - db
+    environment:
+      PORT: 3456
+      CORS_ORIGIN: http://localhost:5173
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: 123how
+      DB_NAME: sava_io_db
+      DB_SSLMODE: disable
+      DB_TIMEZONE: Asia/Jakarta
+      DB_LOG_LEVEL: silent
+    ports:
+      - "3456:3456"

@@ -1,6 +1,6 @@
 package entity
 
 type Customer struct {
-	ID   int64  `json:"id"`
-	Name string `json:"name"`
+	ID   int64  `json:"id" gorm:"primaryKey;autoIncrement"`
+	Name string `json:"name" gorm:"not null"`
 }

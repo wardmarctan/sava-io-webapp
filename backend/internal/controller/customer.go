@@ -2,7 +2,6 @@ package controller
 
 import (
 	"net/http"
-	"strconv"
 
 	"github.com/labstack/echo/v4"
 
@@ -28,11 +27,11 @@ func NewCustomerController(service service.CustomerService) *CustomerController 
 
 func (ctrl *CustomerController) Routes(e *echo.Echo) {
 	group := e.Group("/api/customers")
-	group.GET("", ctrl.List)
-	group.GET("/:id", ctrl.Get)
-	group.POST("", ctrl.Create)
-	group.PUT("/:id", ctrl.Update)
-	group.DELETE("/:id", ctrl.Delete)
+	group.POST("/list", ctrl.List)
+	group.POST("/get", ctrl.Get)
+	group.POST("/create", ctrl.Create)
+	group.POST("/update", ctrl.Update)
+	group.POST("/delete", ctrl.Delete)
 }
 
 func (ctrl *CustomerController) List(c echo.Context) error {
@@ -41,12 +40,12 @@ func (ctrl *CustomerController) List(c echo.Context) error {
 }
 
 func (ctrl *CustomerController) Get(c echo.Context) error {
-	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
-	if err != nil {
+	var payload request.CustomerRequest
+	if err := c.Bind(&payload); err != nil {
 		return c.JSON(http.StatusBadRequest, response.MessageResponse{Message: customerInvalidIDMessage})
 	}
 
-	customer, ok := ctrl.service.GetByID(id)
+	customer, ok := ctrl.service.GetByID(payload.ID)
 	if !ok {
 		return c.JSON(http.StatusNotFound, response.MessageResponse{Message: customerNotFoundMessage})
 	}
@@ -69,21 +68,20 @@ func (ctrl *CustomerController) Create(c echo.Context) error {
 }
 
 func (ctrl *CustomerController) Update(c echo.Context) error {
-	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
-	if err != nil {
-		return c.JSON(http.StatusBadRequest, response.MessageResponse{Message: "invalid customer id"})
-	}
-
 	var payload request.CustomerRequest
 	if err := c.Bind(&payload); err != nil {
 		return c.JSON(http.StatusBadRequest, response.MessageResponse{Message: customerInvalidBodyMessage})
+	}
+
+	if payload.ID == 0 {
+		return c.JSON(http.StatusBadRequest, response.MessageResponse{Message: "invalid customer id"})
 	}
 
 	if payload.Name == "" {
 		return c.JSON(http.StatusBadRequest, response.MessageResponse{Message: customerNameRequired})
 	}
 
-	customer, ok := ctrl.service.Update(id, payload.Name)
+	customer, ok := ctrl.service.Update(payload.ID, payload.Name)
 	if !ok {
 		return c.JSON(http.StatusNotFound, response.MessageResponse{Message: customerNotFoundMessage})
 	}
@@ -92,12 +90,12 @@ func (ctrl *CustomerController) Update(c echo.Context) error {
 }
 
 func (ctrl *CustomerController) Delete(c echo.Context) error {
-	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
-	if err != nil {
+	var payload request.CustomerRequest
+	if err := c.Bind(&payload); err != nil {
 		return c.JSON(http.StatusBadRequest, response.MessageResponse{Message: customerInvalidIDMessage})
 	}
 
-	if !ctrl.service.Delete(id) {
+	if !ctrl.service.Delete(payload.ID) {
 		return c.JSON(http.StatusNotFound, response.MessageResponse{Message: customerNotFoundMessage})
 	}
 

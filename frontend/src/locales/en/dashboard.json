@@ -1,0 +1,58 @@
+{
+  "sidebar": {
+    "sections": {
+      "main": "Main",
+      "masterData": "Master Data",
+      "transactions": "Transactions"
+    },
+    "items": {
+      "dashboard": "Dashboard",
+      "customers": "Customers",
+      "accounts": "Accounts",
+      "depositoTypes": "Deposito Types",
+      "deposit": "Deposit",
+      "withdraw": "Withdraw",
+      "transactionHistory": "Transaction History"
+    }
+  },
+  "topbar": {
+    "switchLanguage": "Switch language",
+    "logout": "Log out"
+  },
+  "page": {
+    "title": "Dashboard",
+    "subtitle": "Overview of saving system",
+    "accounts": "Accounts",
+    "viewAllAccounts": "View All Accounts",
+    "lastTransactions": "Last Transactions",
+    "viewAllTransactions": "View All Transactions",
+    "quickActions": "Quick Actions"
+  },
+  "quickActions": {
+    "addCustomer": "Add Customer",
+    "addAccount": "Add Account",
+    "addDepositoType": "Add Deposito Type",
+    "deposit": "Deposit"
+  },
+  "accountsTable": {
+    "accountId": "Account ID",
+    "customer": "Customer",
+    "depositoType": "Deposito Type",
+    "openingDate": "Opening Date",
+    "balance": "Balance"
+  },
+  "transactionsTable": {
+    "date": "Date",
+    "accountId": "Account ID",
+    "customer": "Customer",
+    "type": "Type",
+    "amount": "Amount",
+    "balanceAfter": "Balance After"
+  },
+  "summary": {
+    "customer": "Total Customers",
+    "account": "Total Accounts",
+    "tag": "Deposito Types",
+    "money": "Total Balance"
+  }
+}

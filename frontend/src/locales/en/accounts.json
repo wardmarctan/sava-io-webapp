@@ -1,0 +1,52 @@
+{
+  "title": "Accounts",
+  "subtitle": "Manage account data",
+  "addAccount": "Add Account",
+  "searchPlaceholder": "Search by account ID or customer name...",
+  "results": "result",
+  "resultsPlural": "results",
+  "loading": "Loading accounts...",
+  "noAccounts": "No accounts found.",
+  "showing": "Showing",
+  "of": "of",
+  "account": "account",
+  "accounts": "accounts",
+  "page": "Page",
+  "rowsPerPage": "Rows per page",
+  "header": {
+    "accountId": "Account ID",
+    "customer": "Customer",
+    "depositoType": "Deposito Type",
+    "openingDate": "Opening Date",
+    "balance": "Balance",
+    "actions": "Actions"
+  },
+  "detail": {
+    "addTitle": "Add Account",
+    "editTitle": "Edit Account",
+    "addSubtitle": "Enter new account information",
+    "editSubtitle": "Update existing account information",
+    "loading": "Loading account...",
+    "cancel": "Cancel",
+    "saving": "Saving...",
+    "submitCreate": "Create Account",
+    "submitEdit": "Save Changes"
+  },
+  "delete": {
+    "title": "Delete Account",
+    "confirm": "Are you sure you want to delete account <1>{{id}}</1>?",
+    "cancel": "Cancel",
+    "deleting": "Deleting...",
+    "delete": "Delete"
+  },
+  "toast": {
+    "listSuccess": "Accounts loaded successfully",
+    "listError": "Failed to load accounts",
+    "createSuccess": "Account created successfully",
+    "createError": "Failed to create account",
+    "updateSuccess": "Account updated successfully",
+    "updateError": "Failed to update account",
+    "deleteSuccess": "Account deleted successfully",
+    "deleteError": "Failed to delete account"
+  }
+}

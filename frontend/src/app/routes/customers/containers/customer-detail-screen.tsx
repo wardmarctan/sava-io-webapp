@@ -2,7 +2,11 @@ import { useEffect, useState } from 'react'
 import { Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { createCustomer, getCustomer, updateCustomer } from '@/lib/api/customers/customer'
+import { createCustomer } from '@/lib/api/customers/create-customer'
+import { getCustomer } from '@/lib/api/customers/get-customer'
+import { updateCustomer } from '@/lib/api/customers/update-customer'
+import { useTranslation } from 'react-i18next'
+import { toast } from 'sonner'
 
 interface CustomerDetailScreenProps {
   open: boolean
@@ -13,6 +17,7 @@ interface CustomerDetailScreenProps {
 }
 
 export function CustomerDetailScreen({ open, type, customerId, onOpenChange, onSaved }: Readonly<CustomerDetailScreenProps>) {
+  const { t } = useTranslation('customers')
   const [name, setName] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -44,7 +49,9 @@ export function CustomerDetailScreen({ open, type, customerId, onOpenChange, onS
         setName(detail.name)
       } catch (loadError) {
         if (!isMounted) return
-        setError(loadError instanceof Error ? loadError.message : 'Failed to load customer detail')
+        const errMsg = loadError instanceof Error ? loadError.message : 'Failed to load customer detail'
+        setError(errMsg)
+        toast.error(errMsg)
       } finally {
         if (isMounted) {
           setIsLoading(false)
@@ -72,15 +79,19 @@ export function CustomerDetailScreen({ open, type, customerId, onOpenChange, onS
     try {
       if (type === 'edit' && customerId !== null) {
         await updateCustomer(customerId, { name: trimmedName })
+        toast.success(t('toast.updateSuccess'))
       } else {
         await createCustomer({ name: trimmedName })
+        toast.success(t('toast.createSuccess'))
       }
 
       await onSaved()
       onOpenChange(false)
       setName('')
     } catch (saveError) {
-      setError(saveError instanceof Error ? saveError.message : 'Failed to save customer')
+      const errMsg = saveError instanceof Error ? saveError.message : 'Failed to save customer'
+      setError(errMsg)
+      toast.error(type === 'edit' ? t('toast.updateError') : t('toast.createError'))
     } finally {
       setIsSubmitting(false)
     }
@@ -95,8 +106,8 @@ export function CustomerDetailScreen({ open, type, customerId, onOpenChange, onS
       <div className="w-full max-w-lg rounded-3xl bg-white p-6 shadow-2xl">
         <div className="mb-5 flex items-start justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-bold text-slate-950">{type === 'create' ? 'Add Customer' : 'Edit Customer'}</h2>
-            <p className="mt-1 text-sm text-slate-600">Create or update customer data</p>
+            <h2 className="text-2xl font-bold text-slate-950">{type === 'create' ? t('detail.addTitle') : t('detail.editTitle')}</h2>
+            <p className="mt-1 text-sm text-slate-600">{type === 'create' ? t('detail.addSubtitle') : t('detail.editSubtitle')}</p>
           </div>
           <button type="button" onClick={() => onOpenChange(false)} className="rounded-full p-2 text-slate-500 hover:bg-slate-100">
             <span className="sr-only">Close</span>
@@ -107,18 +118,18 @@ export function CustomerDetailScreen({ open, type, customerId, onOpenChange, onS
         {isLoading ? (
           <div className="flex items-center justify-center py-12 text-slate-500">
             <Loader2 className="mr-2 size-5 animate-spin" />
-            Loading customer...
+            {t('detail.loading')}
           </div>
         ) : (
           <div className="space-y-4">
             <label htmlFor="customer-name" className="field">
-              <span>Customer name</span>
+              <span>{t('detail.nameLabel')}</span>
               <div className="field__control">
                 <Input
                   id="customer-name"
                   value={name}
                   onChange={(event) => setName(event.target.value)}
-                  placeholder="Enter customer name"
+                  placeholder={t('detail.namePlaceholder')}
                 />
               </div>
             </label>
@@ -127,10 +138,10 @@ export function CustomerDetailScreen({ open, type, customerId, onOpenChange, onS
 
             <div className="flex items-center justify-end gap-3 pt-2">
               <Button type="button" className="bg-slate-200 text-slate-900 shadow-none hover:bg-slate-300" onClick={() => onOpenChange(false)}>
-                Cancel
+                {t('detail.cancel')}
               </Button>
               <Button type="button" onClick={() => void onSubmit()} disabled={isSubmitting}>
-                {isSubmitting ? 'Saving...' : 'Save Customer'}
+                {isSubmitting ? t('detail.saving') : type === 'create' ? t('detail.submitCreate') : t('detail.submitEdit')}
               </Button>
             </div>
           </div>

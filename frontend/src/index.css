@@ -249,18 +249,20 @@ a {
 }
 
 .btn {
-  min-height: 56px;
+  padding: 8px 16px;
   border-radius: 999px;
-  background: linear-gradient(180deg, #1a87ff 0%, #0d6ae0 100%);
+  background: #4a1f6c;
+  border: 1px solid #4a1f6c;
   color: #fff;
+  font-size: 0.875rem;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   cursor: pointer;
   transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
-  box-shadow: 0 16px 32px rgba(13, 106, 224, 0.28);
+  box-shadow: 0 8px 18px rgba(74, 31, 108, 0.24);
 }
 
 .btn:hover {

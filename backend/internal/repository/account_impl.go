@@ -11,7 +11,11 @@ func NewAccountRepository(store *Store) AccountRepository {
 }
 
 func (r *accountRepository) List() []entity.Account {
-	result := make([]entity.Account, len(r.store.Accounts))
-	copy(result, r.store.Accounts)
-	return result
+	if r.store == nil || r.store.DB == nil {
+		return nil
+	}
+
+	var accounts []entity.Account
+	r.store.DB.Order("id asc").Find(&accounts)
+	return accounts
 }

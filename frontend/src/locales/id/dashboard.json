@@ -1,0 +1,58 @@
+{
+  "sidebar": {
+    "sections": {
+      "main": "Utama",
+      "masterData": "Data Induk",
+      "transactions": "Transaksi"
+    },
+    "items": {
+      "dashboard": "Dasbor",
+      "customers": "Pelanggan",
+      "accounts": "Akun",
+      "depositoTypes": "Tipe Deposito",
+      "deposit": "Setoran",
+      "withdraw": "Tarik Tunai",
+      "transactionHistory": "Riwayat Transaksi"
+    }
+  },
+  "topbar": {
+    "switchLanguage": "Ganti bahasa",
+    "logout": "Keluar"
+  },
+  "page": {
+    "title": "Dasbor",
+    "subtitle": "Ringkasan sistem tabungan",
+    "accounts": "Akun",
+    "viewAllAccounts": "Lihat Semua Akun",
+    "lastTransactions": "Transaksi Terakhir",
+    "viewAllTransactions": "Lihat Semua Transaksi",
+    "quickActions": "Aksi Cepat"
+  },
+  "quickActions": {
+    "addCustomer": "Tambah Pelanggan",
+    "addAccount": "Tambah Akun",
+    "addDepositoType": "Tambah Tipe Deposito",
+    "deposit": "Setoran"
+  },
+  "accountsTable": {
+    "accountId": "ID Akun",
+    "customer": "Pelanggan",
+    "depositoType": "Tipe Deposito",
+    "openingDate": "Tanggal Buka",
+    "balance": "Saldo"
+  },
+  "transactionsTable": {
+    "date": "Tanggal",
+    "accountId": "ID Akun",
+    "customer": "Pelanggan",
+    "type": "Tipe",
+    "amount": "Jumlah",
+    "balanceAfter": "Saldo Setelah"
+  },
+  "summary": {
+    "customer": "Total Pelanggan",
+    "account": "Total Akun",
+    "tag": "Tipe Deposito",
+    "money": "Total Saldo"
+  }
+}

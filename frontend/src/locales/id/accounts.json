@@ -1,0 +1,52 @@
+{
+  "title": "Akun",
+  "subtitle": "Kelola data akun",
+  "addAccount": "Tambah Akun",
+  "searchPlaceholder": "Cari berdasarkan ID akun atau nama pelanggan...",
+  "results": "hasil",
+  "resultsPlural": "hasil",
+  "loading": "Memuat akun...",
+  "noAccounts": "Tidak ada akun ditemukan.",
+  "showing": "Menampilkan",
+  "of": "dari",
+  "account": "akun",
+  "accounts": "akun",
+  "page": "Halaman",
+  "rowsPerPage": "Baris per halaman",
+  "header": {
+    "accountId": "ID Akun",
+    "customer": "Pelanggan",
+    "depositoType": "Tipe Deposito",
+    "openingDate": "Tanggal Buka",
+    "balance": "Saldo",
+    "actions": "Aksi"
+  },
+  "detail": {
+    "addTitle": "Tambah Akun",
+    "editTitle": "Edit Akun",
+    "addSubtitle": "Masukkan informasi akun baru",
+    "editSubtitle": "Perbarui informasi akun yang ada",
+    "loading": "Memuat akun...",
+    "cancel": "Batal",
+    "saving": "Menyimpan...",
+    "submitCreate": "Buat Akun",
+    "submitEdit": "Simpan Perubahan"
+  },
+  "delete": {
+    "title": "Hapus Akun",
+    "confirm": "Apakah Anda yakin ingin menghapus akun <1>{{id}}</1>?",
+    "cancel": "Batal",
+    "deleting": "Menghapus...",
+    "delete": "Hapus"
+  },
+  "toast": {
+    "listSuccess": "Berhasil memuat akun",
+    "listError": "Gagal memuat akun",
+    "createSuccess": "Akun berhasil dibuat",
+    "createError": "Gagal membuat akun",
+    "updateSuccess": "Akun berhasil diperbarui",
+    "updateError": "Gagal memperbarui akun",
+    "deleteSuccess": "Akun berhasil dihapus",
+    "deleteError": "Gagal menghapus akun"
+  }
+}

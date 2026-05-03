@@ -1,0 +1,51 @@
+{
+  "title": "Pelanggan",
+  "subtitle": "Kelola data pelanggan",
+  "addCustomer": "Tambah Pelanggan",
+  "searchPlaceholder": "Cari berdasarkan nama atau ID",
+  "results": "hasil",
+  "resultsPlural": "hasil",
+  "loading": "Memuat pelanggan...",
+  "noCustomers": "Tidak ada pelanggan ditemukan.",
+  "showing": "Menampilkan",
+  "of": "dari",
+  "customer": "pelanggan",
+  "customers": "pelanggan",
+  "page": "Halaman",
+  "rowsPerPage": "Baris per halaman",
+  "header": {
+    "customerId": "ID Pelanggan",
+    "name": "Nama",
+    "actions": "Aksi"
+  },
+  "detail": {
+    "addTitle": "Tambah Pelanggan",
+    "editTitle": "Edit Pelanggan",
+    "addSubtitle": "Masukkan informasi pelanggan baru",
+    "editSubtitle": "Perbarui informasi pelanggan yang ada",
+    "loading": "Memuat pelanggan...",
+    "nameLabel": "Nama pelanggan",
+    "namePlaceholder": "Masukkan nama pelanggan",
+    "cancel": "Batal",
+    "saving": "Menyimpan...",
+    "submitCreate": "Buat Pelanggan",
+    "submitEdit": "Simpan Perubahan"
+  },
+  "delete": {
+    "title": "Hapus Pelanggan",
+    "confirm": "Apakah Anda yakin ingin menghapus <1>{{name}}</1>?",
+    "cancel": "Batal",
+    "deleting": "Menghapus...",
+    "delete": "Hapus"
+  },
+  "toast": {
+    "listSuccess": "Berhasil memuat pelanggan",
+    "listError": "Gagal memuat pelanggan",
+    "createSuccess": "Pelanggan berhasil dibuat",
+    "createError": "Gagal membuat pelanggan",
+    "updateSuccess": "Pelanggan berhasil diperbarui",
+    "updateError": "Gagal memperbarui pelanggan",
+    "deleteSuccess": "Pelanggan berhasil dihapus",
+    "deleteError": "Gagal menghapus pelanggan"
+  }
+}

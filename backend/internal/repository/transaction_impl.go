@@ -11,7 +11,11 @@ func NewTransactionRepository(store *Store) TransactionRepository {
 }
 
 func (r *transactionRepository) List() []entity.Transaction {
-	result := make([]entity.Transaction, len(r.store.Transactions))
-	copy(result, r.store.Transactions)
-	return result
+	if r.store == nil || r.store.DB == nil {
+		return nil
+	}
+
+	var transactions []entity.Transaction
+	r.store.DB.Order("id asc").Find(&transactions)
+	return transactions
 }

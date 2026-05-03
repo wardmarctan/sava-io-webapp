@@ -3,11 +3,13 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useLanguage } from '@/hooks/use-language'
 import { clearAuthTokens } from '@/lib/storage'
+import { useTranslation } from 'react-i18next'
 
 export function DashboardTopbar() {
   const [open, setOpen] = useState(false)
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const navigate = useNavigate()
+  const { t } = useTranslation('dashboard')
   const { language, availableLanguages, changeLanguage } = useLanguage()
   const [switchAccountOpen, setSwitchAccountOpen] = useState(false)
 
@@ -56,7 +58,7 @@ export function DashboardTopbar() {
                 >
                   <span className="flex items-center gap-2">
                     <Globe size={16} />
-                    <span>Switch language</span>
+                    <span>{t('topbar.switchLanguage')}</span>
                   </span>
                   <ChevronDown size={14} className="rotate-[-90deg] text-slate-400" />
                 </button>
@@ -85,7 +87,7 @@ export function DashboardTopbar() {
               <div className="border-t" />
 
               <button onClick={handleLogout} className="w-full px-3 py-2 text-left text-sm text-red-600 hover:bg-gray-50">
-                Log out
+                {t('topbar.logout')}
               </button>
             </div>
           </div>

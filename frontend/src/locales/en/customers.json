@@ -1,0 +1,51 @@
+{
+  "title": "Customers",
+  "subtitle": "Manage customer data",
+  "addCustomer": "Add Customer",
+  "searchPlaceholder": "Search by name or ID",
+  "results": "result",
+  "resultsPlural": "results",
+  "loading": "Loading customers...",
+  "noCustomers": "No customers found.",
+  "showing": "Showing",
+  "of": "of",
+  "customer": "customer",
+  "customers": "customers",
+  "page": "Page",
+  "rowsPerPage": "Rows per page",
+  "header": {
+    "customerId": "Customer ID",
+    "name": "Name",
+    "actions": "Actions"
+  },
+  "detail": {
+    "addTitle": "Add Customer",
+    "editTitle": "Edit Customer",
+    "addSubtitle": "Enter new customer information",
+    "editSubtitle": "Update existing customer information",
+    "loading": "Loading customer...",
+    "nameLabel": "Customer name",
+    "namePlaceholder": "Enter customer name",
+    "cancel": "Cancel",
+    "saving": "Saving...",
+    "submitCreate": "Create Customer",
+    "submitEdit": "Save Changes"
+  },
+  "delete": {
+    "title": "Delete Customer",
+    "confirm": "Are you sure you want to delete <1>{{name}}</1>?",
+    "cancel": "Cancel",
+    "deleting": "Deleting...",
+    "delete": "Delete"
+  },
+  "toast": {
+    "listSuccess": "Customers loaded successfully",
+    "listError": "Failed to load customers",
+    "createSuccess": "Customer created successfully",
+    "createError": "Failed to create customer",
+    "updateSuccess": "Customer updated successfully",
+    "updateError": "Failed to update customer",
+    "deleteSuccess": "Customer deleted successfully",
+    "deleteError": "Failed to delete customer"
+  }
+}

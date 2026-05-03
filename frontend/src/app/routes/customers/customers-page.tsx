@@ -4,13 +4,19 @@ import { DashboardSidebar } from '../dashboard/components/dashboard-sidebar'
 import { DashboardTopbar } from '../dashboard/components/dashboard-topbar'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { listCustomers, type Customer } from '@/lib/api/customers/customer'
+import { listCustomers } from '@/lib/api/customers/list-customer'
+import { type Customer } from '@/lib/api/types/customer/customer'
 import { CustomerDetailScreen } from './containers/customer-detail-screen'
 import { DeleteCustomerDialog } from './containers/delete-customer-dialog'
-
-const PAGE_SIZE = 10
+import { useCustomerTableColumns } from './containers/customer-table-columns'
+import { useTranslation } from 'react-i18next'
+import { useSearchParams } from 'react-router'
+import { toast } from 'sonner'
 
 export function CustomersPage() {
+  const { t } = useTranslation('customers')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [pageSize, setPageSize] = useState(10)
   const [customers, setCustomers] = useState<Customer[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -22,6 +28,11 @@ export function CustomersPage() {
   const [deleteOpen, setDeleteOpen] = useState(false)
   const [deleteCustomer, setDeleteCustomer] = useState<Customer | null>(null)
 
+  const columns = useCustomerTableColumns(
+    (id) => void openEditModal(id),
+    (customer) => openDeleteDialog(customer)
+  )
+
   const loadCustomers = async () => {
     setLoading(true)
     setError('')
@@ -29,8 +40,11 @@ export function CustomersPage() {
     try {
       const response = await listCustomers()
       setCustomers(response.data)
+      // toast.success(t('toast.listSuccess')) // Optional: Might be too noisy on every load
     } catch (loadError) {
-      setError(loadError instanceof Error ? loadError.message : 'Failed to load customers')
+      const errMsg = loadError instanceof Error ? loadError.message : 'Failed to load customers'
+      setError(errMsg)
+      toast.error(t('toast.listError') + ': ' + errMsg)
     } finally {
       setLoading(false)
     }
@@ -39,6 +53,18 @@ export function CustomersPage() {
   useEffect(() => {
     void loadCustomers()
   }, [])
+
+  useEffect(() => {
+    if (searchParams.get('action') === 'create') {
+      setDetailType('create')
+      setDetailCustomerId(null)
+      setDetailOpen(true)
+
+      const nextParams = new URLSearchParams(searchParams)
+      nextParams.delete('action')
+      setSearchParams(nextParams, { replace: true })
+    }
+  }, [searchParams, setSearchParams])
 
   useEffect(() => {
     setPage(1)
@@ -55,36 +81,29 @@ export function CustomersPage() {
     })
   }, [customers, query])
 
-  const totalPages = Math.max(1, Math.ceil(filteredCustomers.length / PAGE_SIZE))
+  const totalPages = Math.max(1, Math.ceil(filteredCustomers.length / pageSize))
   const safePage = Math.min(page, totalPages)
-  const pagedCustomers = filteredCustomers.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE)
+  const pagedCustomers = filteredCustomers.slice((safePage - 1) * pageSize, safePage * pageSize)
   const tableBody = loading ? (
     <tr>
-      <td className="px-4 py-8 text-center text-slate-500" colSpan={3}>
-        Loading customers...
+      <td className="px-4 py-8 text-center text-slate-500" colSpan={columns.length}>
+        {t('loading')}
       </td>
     </tr>
   ) : pagedCustomers.length === 0 ? (
     <tr>
-      <td className="px-4 py-8 text-center text-slate-500" colSpan={3}>
-        No customers found.
+      <td className="px-4 py-8 text-center text-slate-500" colSpan={columns.length}>
+        {t('noCustomers')}
       </td>
     </tr>
   ) : (
     pagedCustomers.map((customer) => (
       <tr key={customer.id} className="border-t border-[#b89ed1]/70">
-        <td className="px-4 py-3">CUS-{String(customer.id).padStart(3, '0')}</td>
-        <td className="px-4 py-3">{customer.name}</td>
-        <td className="px-4 py-3">
-          <div className="flex items-center gap-3 text-slate-700">
-            <button type="button" onClick={() => void openEditModal(customer.id)} title="Edit">
-              <Pencil size={16} />
-            </button>
-            <button type="button" onClick={() => openDeleteDialog(customer)} title="Delete">
-              <Trash2 size={16} />
-            </button>
-          </div>
-        </td>
+        {columns.map((col, idx) => (
+          <td key={idx} className="px-4 py-3">
+            {col.cell(customer)}
+          </td>
+        ))}
       </tr>
     ))
   )
@@ -120,13 +139,13 @@ export function CustomersPage() {
           <div className="min-w-0 flex-1 overflow-auto px-6 py-6 lg:px-8">
             <section className="mb-5 flex items-end justify-between gap-4">
               <div>
-                <h1 className="text-3xl font-extrabold tracking-tight text-slate-950">Customers</h1>
-                <p className="mt-1 text-sm text-slate-700">Manage customer data</p>
+                <h1 className="text-3xl font-extrabold tracking-tight text-slate-950">{t('title')}</h1>
+                <p className="mt-1 text-sm text-slate-700">{t('subtitle')}</p>
               </div>
 
-              <Button onClick={openCreateModal} className="rounded-xl px-5">
+              <Button onClick={openCreateModal} className="px-5">
                 <Plus size={18} />
-                Add Customer
+                {t('addCustomer')}
               </Button>
             </section>
 
@@ -140,13 +159,13 @@ export function CustomersPage() {
                       id="customer-search"
                       value={query}
                       onChange={(event) => setQuery(event.target.value)}
-                      placeholder="Search by name or ID"
+                      placeholder={t('searchPlaceholder')}
                     />
                   </div>
                 </label>
 
                 <div className="text-sm text-slate-500">
-                  {filteredCustomers.length} result{filteredCustomers.length === 1 ? '' : 's'}
+                  {filteredCustomers.length} {filteredCustomers.length === 1 ? t('results') : t('resultsPlural')}
                 </div>
               </div>
 
@@ -156,9 +175,11 @@ export function CustomersPage() {
                 <table className="w-full border-collapse text-sm">
                   <thead className="bg-[#efe7f7] text-slate-950">
                     <tr>
-                      <th className="px-4 py-3 text-left font-semibold">Customer ID</th>
-                      <th className="px-4 py-3 text-left font-semibold">Name</th>
-                      <th className="px-4 py-3 text-left font-semibold">Actions</th>
+                      {columns.map((col, idx) => (
+                        <th key={idx} className="px-4 py-3 text-left font-semibold">
+                          {col.header}
+                        </th>
+                      ))}
                     </tr>
                   </thead>
                   <tbody>{tableBody}</tbody>
@@ -167,14 +188,30 @@ export function CustomersPage() {
 
               <div className="mt-4 flex flex-wrap items-center justify-between gap-4 text-sm text-slate-600">
                 <div>
-                  Showing {pagedCustomers.length} of {filteredCustomers.length} customer{filteredCustomers.length === 1 ? '' : 's'}
+                  {t('showing')} {pagedCustomers.length} {t('of')} {filteredCustomers.length} {filteredCustomers.length === 1 ? t('customer') : t('customers')}
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <span>
-                    Page {safePage} of {Math.max(1, totalPages)}
-                  </span>
-                  <div className="flex items-center gap-1">
+                <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-2">
+                    <span>{t('rowsPerPage')}</span>
+                    <select
+                      value={pageSize}
+                      onChange={(e) => {
+                        setPageSize(Number(e.target.value))
+                        setPage(1)
+                      }}
+                      className="rounded-md border border-[#d8cbe6] bg-[#efe7f7] px-2 py-1 text-sm outline-none focus:border-[#b89ed1]"
+                    >
+                      <option value={10}>10</option>
+                      <option value={20}>20</option>
+                      <option value={50}>50</option>
+                    </select>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span>
+                      {t('page')} {safePage} {t('of')} {Math.max(1, totalPages)}
+                    </span>
+                    <div className="flex items-center gap-1">
                     <button
                       type="button"
                       onClick={() => setPage((current) => Math.max(1, current - 1))}
@@ -194,7 +231,9 @@ export function CustomersPage() {
                   </div>
                 </div>
               </div>
+              </div>
             </section>
+            
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { LayoutGrid, Users, WalletCards, Tags, ArrowDownToLine, ArrowUpFromLine, History } from 'lucide-react'
 import { Link, useLocation } from 'react-router'
+import { useTranslation } from 'react-i18next'
 
 type MenuItem = {
   label: string
@@ -13,31 +14,32 @@ type MenuSection = {
   items: MenuItem[]
 }
 
-const menuSections: MenuSection[] = [
-  {
-    title: 'Main',
-    items: [{ label: 'Dashboard', icon: LayoutGrid, active: true, href: '/' }],
-  },
-  {
-    title: 'Master Data',
-    items: [
-      { label: 'Customers', icon: Users, href: '/customers' },
-      { label: 'Accounts', icon: WalletCards, href: '#' },
-      { label: 'Deposito Types', icon: Tags, href: '#' },
-    ],
-  },
-  {
-    title: 'Transactions',
-    items: [
-      { label: 'Deposit', icon: ArrowDownToLine, href: '#' },
-      { label: 'Withdraw', icon: ArrowUpFromLine, href: '#' },
-      { label: 'Transaction History', icon: History, href: '#' },
-    ],
-  },
-]
-
 export function DashboardSidebar() {
   const location = useLocation()
+  const { t } = useTranslation('dashboard')
+
+  const menuSections = [
+    {
+      title: t('sidebar.sections.main'),
+      items: [{ label: t('sidebar.items.dashboard'), icon: LayoutGrid, href: '/' }],
+    },
+    {
+      title: t('sidebar.sections.masterData'),
+      items: [
+        { label: t('sidebar.items.customers'), icon: Users, href: '/customers' },
+        { label: t('sidebar.items.accounts'), icon: WalletCards, href: '#' },
+        { label: t('sidebar.items.depositoTypes'), icon: Tags, href: '#' },
+      ],
+    },
+    {
+      title: t('sidebar.sections.transactions'),
+      items: [
+        { label: t('sidebar.items.deposit'), icon: ArrowDownToLine, href: '#' },
+        { label: t('sidebar.items.withdraw'), icon: ArrowUpFromLine, href: '#' },
+        { label: t('sidebar.items.transactionHistory'), icon: History, href: '#' },
+      ],
+    },
+  ]
 
   return (
     <aside className="sticky top-0 flex h-screen w-[260px] shrink-0 flex-col bg-[#4a1f6c] px-5 py-6 text-white shadow-[8px_0_24px_rgba(34,10,52,0.2)]">

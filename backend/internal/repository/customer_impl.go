@@ -1,14 +1,11 @@
 package repository
 
 import (
-	"sync"
-
 	"sava-io-webapp/backend/internal/entity"
 )
 
 type customerRepository struct {
 	store *Store
-	mu    sync.Mutex
 }
 
 func NewCustomerRepository(store *Store) CustomerRepository {
@@ -16,66 +13,56 @@ func NewCustomerRepository(store *Store) CustomerRepository {
 }
 
 func (r *customerRepository) List() []entity.Customer {
-	result := make([]entity.Customer, len(r.store.Customers))
-	copy(result, r.store.Customers)
-	return result
+	if r.store == nil || r.store.DB == nil {
+		return nil
+	}
+
+	var customers []entity.Customer
+	r.store.DB.Order("id asc").Find(&customers)
+	return customers
 }
 
 func (r *customerRepository) GetByID(id int64) (entity.Customer, bool) {
-	for _, customer := range r.store.Customers {
-		if customer.ID == id {
-			return customer, true
-		}
+	if r.store == nil || r.store.DB == nil {
+		return entity.Customer{}, false
 	}
 
-	return entity.Customer{}, false
+	var customer entity.Customer
+	if err := r.store.DB.First(&customer, id).Error; err != nil {
+		return entity.Customer{}, false
+	}
+
+	return customer, true
 }
 
 func (r *customerRepository) Create(customer entity.Customer) entity.Customer {
-	r.mu.Lock()
-	defer r.mu.Unlock()
+	if r.store == nil || r.store.DB == nil {
+		return customer
+	}
 
-	customer.ID = r.nextID()
-	r.store.Customers = append(r.store.Customers, customer)
+	_ = r.store.DB.Create(&customer)
 	return customer
 }
 
 func (r *customerRepository) Update(id int64, customer entity.Customer) (entity.Customer, bool) {
-	r.mu.Lock()
-	defer r.mu.Unlock()
-
-	for index, current := range r.store.Customers {
-		if current.ID == id {
-			customer.ID = id
-			r.store.Customers[index] = customer
-			return customer, true
-		}
+	if r.store == nil || r.store.DB == nil {
+		return entity.Customer{}, false
 	}
 
-	return entity.Customer{}, false
+	customer.ID = id
+	result := r.store.DB.Model(&entity.Customer{}).Where("id = ?", id).Updates(map[string]any{"name": customer.Name})
+	if result.Error != nil || result.RowsAffected == 0 {
+		return entity.Customer{}, false
+	}
+
+	return customer, true
 }
 
 func (r *customerRepository) Delete(id int64) bool {
-	r.mu.Lock()
-	defer r.mu.Unlock()
-
-	for index, current := range r.store.Customers {
-		if current.ID == id {
-			r.store.Customers = append(r.store.Customers[:index], r.store.Customers[index+1:]...)
-			return true
-		}
+	if r.store == nil || r.store.DB == nil {
+		return false
 	}
 
-	return false
-}
-
-func (r *customerRepository) nextID() int64 {
-	var nextID int64 = 1
-	for _, customer := range r.store.Customers {
-		if customer.ID >= nextID {
-			nextID = customer.ID + 1
-		}
-	}
-
-	return nextID
+	result := r.store.DB.Delete(&entity.Customer{}, id)
+	return result.Error == nil && result.RowsAffected > 0
 }

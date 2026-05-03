@@ -1,10 +1,6 @@
 package repository
 
-import (
-	"strings"
-
-	"sava-io-webapp/backend/internal/entity"
-)
+import "sava-io-webapp/backend/internal/entity"
 
 type userRepository struct {
 	store *Store
@@ -18,11 +14,14 @@ func NewUserRepository(store *Store) UserRepository {
 }
 
 func (r *userRepository) FindByUsername(username string) (*entity.User, bool) {
-	user, ok := r.store.Users[strings.ToLower(strings.TrimSpace(username))]
-	if !ok {
+	if r.store == nil || r.store.DB == nil {
 		return nil, false
 	}
 
-	copy := user
-	return &copy, true
+	var user entity.User
+	if err := r.store.DB.Where("LOWER(username) = LOWER(?)", username).First(&user).Error; err != nil {
+		return nil, false
+	}
+
+	return &user, true
 }
