@@ -102,8 +102,13 @@ func (ctrl *DepositoTypeController) Delete(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, response.MessageResponse{Message: depositoTypeInvalidIDMessage})
 	}
 
-	if !ctrl.service.Delete(payload.ID) {
+	dt, ok := ctrl.service.GetByID(payload.ID)
+	if !ok {
 		return c.JSON(http.StatusNotFound, response.MessageResponse{Message: depositoTypeNotFoundMessage})
+	}
+
+	if !ctrl.service.Delete(dt.ID) {
+		return c.JSON(http.StatusConflict, response.MessageResponse{Message: "deposito type is currently in use and cannot be deleted"})
 	}
 
 	return c.NoContent(http.StatusNoContent)

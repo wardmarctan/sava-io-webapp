@@ -132,7 +132,6 @@ export function TransactionHistoryPage() {
                 {appliedAccountId != null && (
                   <Button
                     type="button"
-                    className="bg-slate-200 text-slate-900 shadow-none hover:bg-slate-300"
                     onClick={() => void resetFilter()}
                   >
                     {t('filter.reset')}
@@ -154,7 +153,7 @@ export function TransactionHistoryPage() {
                           <select
                             value={filterAccountId}
                             onChange={(e) => setFilterAccountId(e.target.value ? Number(e.target.value) : '')}
-                            className="flex h-11 w-full rounded-xl border border-[#d8cbe6] bg-[#f9f6fc] px-4 text-sm text-slate-900 transition-colors focus:border-[#4a1f6c] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#4a1f6c]"
+                            className="select"
                           >
                             <option value="">{t('filter.allAccounts')}</option>
                             {accounts.map((acc) => (
@@ -169,7 +168,6 @@ export function TransactionHistoryPage() {
                       <div className="flex items-center justify-end gap-2">
                         <Button
                           type="button"
-                          className="bg-slate-200 text-slate-900 shadow-none hover:bg-slate-300"
                           onClick={() => setFilterOpen(false)}
                         >
                           {t('filter.cancel')}
@@ -235,7 +233,8 @@ export function TransactionHistoryPage() {
                         setPageSize(Number(e.target.value))
                         setPage(1)
                       }}
-                      className="rounded-md border border-[#d8cbe6] bg-[#efe7f7] px-2 py-1 text-sm outline-none focus:border-[#b89ed1]"
+                      className="select"
+                      style={{ paddingRight: '24px', minHeight: '32px' }}
                     >
                       <option value={10}>10</option>
                       <option value={20}>20</option>

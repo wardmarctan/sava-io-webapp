@@ -21,7 +21,7 @@ export function DashboardSidebar() {
   const menuSections = [
     {
       title: t('sidebar.sections.main'),
-      items: [{ label: t('sidebar.items.dashboard'), icon: LayoutGrid, href: '/' }],
+      items: [{ label: t('sidebar.items.dashboard'), icon: LayoutGrid, href: '/dashboard' }],
     },
     {
       title: t('sidebar.sections.masterData'),

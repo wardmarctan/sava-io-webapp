@@ -147,7 +147,7 @@ export function AccountDetailScreen({ open, type, accountId, onOpenChange, onSav
                     value={customerId} 
                     onChange={(e) => setCustomerId(Number(e.target.value))}
                     disabled={type === 'edit'}
-                    className="flex h-11 w-full rounded-xl border border-[#d8cbe6] bg-[#f9f6fc] px-4 text-sm text-slate-900 transition-colors placeholder:text-slate-400 focus:border-[#4a1f6c] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#4a1f6c] disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="select"
                   >
                     <option value="" disabled>{t('detail.selectCustomerPlaceholder')}</option>
                     {customers.map(c => (
@@ -164,7 +164,7 @@ export function AccountDetailScreen({ open, type, accountId, onOpenChange, onSav
                     id="depositoType" 
                     value={depositoTypeId} 
                     onChange={(e) => setDepositoTypeId(Number(e.target.value))}
-                    className="flex h-11 w-full rounded-xl border border-[#d8cbe6] bg-[#f9f6fc] px-4 text-sm text-slate-900 transition-colors placeholder:text-slate-400 focus:border-[#4a1f6c] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#4a1f6c]"
+                    className="select"
                   >
                     <option value="" disabled>{t('detail.selectDepositoTypePlaceholder')}</option>
                     {depositoTypes.map(d => (
@@ -190,7 +190,7 @@ export function AccountDetailScreen({ open, type, accountId, onOpenChange, onSav
               </label>
 
             <div className="flex items-center justify-end gap-3 pt-4">
-              <Button type="button" className="bg-slate-200 text-slate-900 shadow-none hover:bg-slate-300" onClick={() => onOpenChange(false)}>
+              <Button type="button" onClick={() => onOpenChange(false)}>
                 {t('detail.cancel')}
               </Button>
               <Button type="button" onClick={() => void onSubmit()} disabled={isSubmitting}>

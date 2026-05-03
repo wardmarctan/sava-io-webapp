@@ -175,7 +175,7 @@ export function DepositPage() {
                       </div>
                     </label>
 
-                    <Button type="button" className="mt-2 w-full" onClick={() => void onSubmit()} disabled={isSubmitting}>
+                    <Button type="button" onClick={() => void onSubmit()} disabled={isSubmitting}>
                       {isSubmitting ? t('form.submitting') : t('form.submit')}
                     </Button>
                   </div>

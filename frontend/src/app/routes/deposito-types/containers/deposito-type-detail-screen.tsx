@@ -159,7 +159,7 @@ export function DepositoTypeDetailScreen({
             </label>
 
             <div className="flex items-center justify-end gap-3 pt-4">
-              <Button type="button" className="bg-slate-200 text-slate-900 shadow-none hover:bg-slate-300" onClick={() => onOpenChange(false)}>
+              <Button type="button" onClick={() => onOpenChange(false)}>
                 {t('detail.cancel')}
               </Button>
               <Button type="button" onClick={() => void onSubmit()} disabled={isSubmitting}>

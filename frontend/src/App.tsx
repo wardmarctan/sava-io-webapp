@@ -21,6 +21,10 @@ function App() {
     },
     {
       path: '/',
+      element: <Navigate to="/dashboard" replace />,
+    },
+    {
+      path: '/dashboard',
       element: getAccessToken() ? <DashboardPage /> : <Navigate to="/login" replace />,
     },
     {

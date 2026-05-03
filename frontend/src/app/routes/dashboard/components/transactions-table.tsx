@@ -1,5 +1,6 @@
 import type { Transaction } from '@/lib/api/types/transaction/transaction'
 import { useTranslation } from 'react-i18next'
+import { Button } from '@/components/ui/button'
 
 type TransactionsTableProps = {
   transactions: Transaction[]
@@ -13,14 +14,9 @@ export function TransactionsTable({ transactions, onViewAll }: Readonly<Transact
     <section className="rounded-2xl border border-[#b89ed1] bg-white p-4 shadow-[0_8px_24px_rgba(62,23,86,0.06)]">
       <div className="mb-3 flex items-center justify-between">
         <h2 className="text-lg font-bold text-slate-950">{t('page.lastTransactions')}</h2>
-        <button
-          type="button"
-          onClick={onViewAll}
-          className="cursor-pointer rounded-full border border-[#4a1f6c] bg-[#4a1f6c] px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_18px_rgba(74,31,108,0.24)] transition-transform hover:-translate-y-0.5"
-          style={{ color: '#fff', backgroundColor: '#4a1f6c' }}
-        >
+        <Button type="button" onClick={onViewAll}>
           {t('page.viewAllTransactions')}
-        </button>
+        </Button>
       </div>
 
       <div className="overflow-hidden rounded-2xl border border-[#b89ed1]">

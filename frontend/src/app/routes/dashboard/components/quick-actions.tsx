@@ -24,14 +24,11 @@ export function QuickActions() {
               {action.label}
             </>
           )
-          const className = "flex w-full min-h-14 items-center gap-3 rounded-xl border border-[#4a1f6c] bg-[#4a1f6c] px-4 py-3 text-sm font-semibold text-white shadow-[0_8px_18px_rgba(74,31,108,0.24)] transition-transform hover:-translate-y-0.5"
-          
           return (
             <Link
               key={action.label}
               to={action.href!}
-              className={className}
-              style={{ color: '#fff', backgroundColor: '#4a1f6c' }}
+              className="btn"
             >
               {content}
             </Link>

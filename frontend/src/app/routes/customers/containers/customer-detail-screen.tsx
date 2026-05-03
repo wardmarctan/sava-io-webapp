@@ -137,7 +137,7 @@ export function CustomerDetailScreen({ open, type, customerId, onOpenChange, onS
             {error && <div className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">{error}</div>}
 
             <div className="flex items-center justify-end gap-3 pt-2">
-              <Button type="button" className="bg-slate-200 text-slate-900 shadow-none hover:bg-slate-300" onClick={() => onOpenChange(false)}>
+              <Button type="button" onClick={() => onOpenChange(false)}>
                 {t('detail.cancel')}
               </Button>
               <Button type="button" onClick={() => void onSubmit()} disabled={isSubmitting}>

@@ -142,7 +142,7 @@ export function AccountsPage() {
                 <p className="mt-1 text-sm text-slate-700">{t('subtitle')}</p>
               </div>
 
-              <Button onClick={openCreateModal} className="px-5">
+              <Button onClick={openCreateModal}>
                 <Plus size={18} />
                 {t('addAccount')}
               </Button>

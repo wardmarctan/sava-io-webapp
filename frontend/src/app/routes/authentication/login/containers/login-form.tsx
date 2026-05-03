@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { LockKeyhole, Mail, LogIn } from 'lucide-react'
+import { Shield, User, LogIn } from 'lucide-react'
 import { useNavigate } from 'react-router'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -32,7 +32,7 @@ export function LoginForm() {
       clearAuthTokens()
       setAccessToken(response.access_token)
       setRefreshToken(response.refresh_token)
-      navigate('/', { replace: true })
+      navigate('/dashboard', { replace: true })
     } catch (error) {
       const message = error instanceof Error ? error.message : t('form.error.invalidCredentials')
       setServerError(message)
@@ -42,19 +42,19 @@ export function LoginForm() {
   return (
     <form className="login-form" onSubmit={form.handleSubmit(onSubmit)}>
       <label className="field">
-        <span>{t('form.username.label')}</span>
+        <span>Username</span>
         <div className="field__control">
-          <Mail size={16} />
-          <Input placeholder={t('form.username.placeholder')} autoComplete="username" {...form.register('username')} />
+          <User size={20} />
+          <Input placeholder="Enter your username" autoComplete="username" {...form.register('username')} />
         </div>
         {form.formState.errors.username?.message && <small>{form.formState.errors.username.message}</small>}
       </label>
 
       <label className="field">
-        <span>{t('form.password.label')}</span>
+        <span>Password</span>
         <div className="field__control">
-          <LockKeyhole size={16} />
-          <PasswordInput placeholder={t('form.password.placeholder')} autoComplete="current-password" {...form.register('password')} />
+          <Shield size={20} />
+          <PasswordInput placeholder="Enter your password" autoComplete="current-password" {...form.register('password')} />
         </div>
         {form.formState.errors.password?.message && <small>{form.formState.errors.password.message}</small>}
       </label>

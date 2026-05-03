@@ -61,10 +61,10 @@ export function DeleteAccountDialog({ open, onOpenChange, account, onDeleted }: 
         {error && <div className="mt-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">{error}</div>}
 
         <div className="mt-6 flex items-center justify-end gap-3">
-          <Button type="button" className="bg-slate-200 text-slate-900 shadow-none hover:bg-slate-300" onClick={() => onOpenChange(false)}>
+          <Button type="button" onClick={() => onOpenChange(false)}>
             {t('delete.cancel')}
           </Button>
-          <Button type="button" className="bg-red-600 shadow-none hover:bg-red-700" onClick={() => void onDelete()} disabled={isSubmitting}>
+          <Button type="button" onClick={() => void onDelete()} disabled={isSubmitting}>
             {isSubmitting ? t('delete.deleting') : t('delete.delete')}
           </Button>
         </div>
