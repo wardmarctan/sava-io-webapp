@@ -1,0 +1,35 @@
+{
+  "title": "Halo!",
+  "description": "Login untuk memulai",
+  "language": {
+    "label": "Bahasa"
+  },
+  "form": {
+    "username": {
+      "label": "Alamat Email",
+      "placeholder": "Alamat Email",
+      "error": {
+        "required": "Nama pengguna wajib diisi"
+      }
+    },
+    "password": {
+      "label": "Kata sandi",
+      "placeholder": "Masukkan kata sandi",
+      "error": {
+        "required": "Kata sandi wajib diisi"
+      }
+    },
+    "submit": {
+      "button": "Login",
+      "loading": "Sedang login..."
+    },
+    "error": {
+      "invalidCredentials": "Nama pengguna atau kata sandi salah"
+    },
+    "forgotPassword": "Lupa Password"
+  },
+  "banner": {
+    "title": "Backend Go, login pertama sebagai permukaan awal",
+    "description": "Backend sekarang ditulis dengan Go, memakai akun admin sementara, dan mengikuti alur controller-service-repository yang berlapis."
+  }
+}

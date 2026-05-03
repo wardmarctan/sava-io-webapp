@@ -1,0 +1,41 @@
+.page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 360px));
+  gap: 1rem;
+  place-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.card {
+  border: 1px solid #d9dce3;
+  border-radius: 12px;
+  padding: 1.25rem;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+h1,
+h2 {
+  margin-top: 0;
+  color: #1e293b;
+}
+
+p {
+  color: #475569;
+  line-height: 1.5;
+}
+
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  background: #0f766e;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #115e59;
+}

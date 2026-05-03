@@ -1,0 +1,35 @@
+{
+  "title": "Hello!",
+  "description": "Login to Get Started",
+  "language": {
+    "label": "Language"
+  },
+  "form": {
+    "username": {
+      "label": "Email Address",
+      "placeholder": "Email Address",
+      "error": {
+        "required": "Username is required"
+      }
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter your password",
+      "error": {
+        "required": "Password is required"
+      }
+    },
+    "submit": {
+      "button": "Login",
+      "loading": "Logging in..."
+    },
+    "error": {
+      "invalidCredentials": "Invalid username or password"
+    },
+    "forgotPassword": "Forgot Password"
+  },
+  "banner": {
+    "title": "Structured backend, first login surface",
+    "description": "The backend is now written in Go with a seeded temporary admin account and a layered controller-service-repository flow."
+  }
+}

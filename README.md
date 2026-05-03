@@ -1,75 +1,62 @@
-# React + TypeScript + Vite
+# sava-io-webapp (Frontend + Backend MVC)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Proyek ini sudah dipisah menjadi 2 aplikasi:
 
-Currently, two official plugins are available:
+- `frontend/` (React + TypeScript + Vite) dengan pola MVC sederhana
+- `backend/` (Express) dengan pola MVC
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Struktur
 
-## React Compiler
-
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+frontend/
+  src/
+    controllers/
+    models/
+    services/
+    views/
+backend/
+  src/
+    controllers/
+    models/
+    routes/
+    views/
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Menjalankan proyek
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Dari root proyek:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+Jalankan frontend:
+
+```bash
+npm run dev:frontend
+```
+
+Jalankan backend:
+
+```bash
+npm run dev:backend
+```
+
+- Frontend: `http://localhost:5173`
+- Backend: `http://localhost:3000/api/health`
+
+## Ringkas MVC
+
+### Frontend
+
+- Model: `frontend/src/models/counterModel.ts`
+- Controller: `frontend/src/controllers/useHomeController.ts`
+- View: `frontend/src/views/HomeView.tsx`
+- Service API: `frontend/src/services/healthService.ts`
+
+### Backend
+
+- Model: `backend/src/models/healthModel.js`
+- Controller: `backend/src/controllers/healthController.js`
+- View: `backend/src/views/healthView.js`
+- Route: `backend/src/routes/healthRoutes.js`
