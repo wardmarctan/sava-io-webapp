@@ -27,16 +27,16 @@ export function DashboardSidebar() {
       title: t('sidebar.sections.masterData'),
       items: [
         { label: t('sidebar.items.customers'), icon: Users, href: '/customers' },
-        { label: t('sidebar.items.accounts'), icon: WalletCards, href: '#' },
-        { label: t('sidebar.items.depositoTypes'), icon: Tags, href: '#' },
+        { label: t('sidebar.items.accounts'), icon: WalletCards, href: '/accounts' },
+        { label: t('sidebar.items.depositoTypes'), icon: Tags, href: '/deposito-types' },
       ],
     },
     {
       title: t('sidebar.sections.transactions'),
       items: [
-        { label: t('sidebar.items.deposit'), icon: ArrowDownToLine, href: '#' },
-        { label: t('sidebar.items.withdraw'), icon: ArrowUpFromLine, href: '#' },
-        { label: t('sidebar.items.transactionHistory'), icon: History, href: '#' },
+        { label: t('sidebar.items.deposit'), icon: ArrowDownToLine, href: '/deposit' },
+        { label: t('sidebar.items.withdraw'), icon: ArrowUpFromLine, href: '/withdraw' },
+        { label: t('sidebar.items.transactionHistory'), icon: History, href: '/transaction-history' },
       ],
     },
   ]

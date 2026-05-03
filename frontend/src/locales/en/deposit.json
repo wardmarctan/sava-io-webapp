@@ -1,0 +1,35 @@
+{
+  "title": "Deposit",
+  "subtitle": "Add balance to account",
+  "loading": "Loading deposit form...",
+  "form": {
+    "title": "Deposit Information",
+    "account": "Account",
+    "selectAccount": "Select account",
+    "depositDate": "Deposit Date",
+    "amount": "Amount",
+    "amountPlaceholder": "Rp 10.000.000",
+    "submit": "Submit Deposit",
+    "submitting": "Submitting..."
+  },
+  "summary": {
+    "title": "Account Summary",
+    "accountId": "Account ID",
+    "customer": "Customer",
+    "depositoType": "Deposit Type",
+    "startingBalance": "Starting Balance",
+    "yearlyReturn": "Yearly Return",
+    "monthlyReturn": "Monthly Return",
+    "note": "Deposit will add your account balance"
+  },
+  "validation": {
+    "required": "Please complete all fields",
+    "amountPositive": "Amount must be greater than 0",
+    "dateNotFuture": "Date cannot be in the future"
+  },
+  "toast": {
+    "success": "Deposit successful",
+    "error": "Failed to deposit"
+  }
+}
+

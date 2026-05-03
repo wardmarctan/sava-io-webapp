@@ -1,0 +1,41 @@
+{
+  "title": "Tarik Tunai",
+  "subtitle": "Tarik saldo dari akun",
+  "loading": "Memuat form tarik tunai...",
+  "form": {
+    "title": "Informasi Penarikan",
+    "account": "Akun",
+    "selectAccount": "Pilih akun",
+    "withdrawDate": "Tanggal Tarik",
+    "amount": "Jumlah",
+    "amountPlaceholder": "Rp 5.000.000",
+    "months": "# Bulan",
+    "monthsPlaceholder": "contoh: 3",
+    "calculate": "Hitung"
+  },
+  "result": {
+    "title": "Hasil Perhitungan",
+    "empty": "Isi form lalu klik Hitung.",
+    "startingBalance": "Saldo Awal",
+    "monthlyReturn": "Imbal Hasil Bulanan",
+    "months": "# Bulan",
+    "returnAmount": "Jumlah Imbal Hasil",
+    "endingBalance": "Saldo Akhir",
+    "formula": "Saldo akhir = Saldo awal * # Bulan * Imbal Hasil Bulanan - Jumlah Penarikan",
+    "confirm": "Konfirmasi Penarikan",
+    "submitting": "Mengirim..."
+  },
+  "validation": {
+    "required": "Mohon lengkapi semua kolom",
+    "selectAccount": "Mohon pilih akun yang valid",
+    "amountPositive": "Jumlah harus lebih dari 0",
+    "monthsPositive": "Jumlah bulan harus lebih dari 0",
+    "insufficient": "Saldo tidak mencukupi",
+    "dateNotFuture": "Tanggal tidak boleh melebihi hari ini"
+  },
+  "toast": {
+    "success": "Penarikan berhasil",
+    "error": "Gagal melakukan penarikan"
+  }
+}
+

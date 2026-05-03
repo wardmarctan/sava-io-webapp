@@ -1,0 +1,34 @@
+{
+  "title": "Transaction History",
+  "subtitle": "View all transactions",
+  "searchPlaceholder": "Search by account ID or customer name...",
+  "results": "result",
+  "resultsPlural": "results",
+  "loading": "Loading transactions...",
+  "noRows": "No transactions found.",
+  "showing": "Showing",
+  "of": "of",
+  "page": "Page",
+  "rowsPerPage": "Rows per page",
+  "header": {
+    "date": "Date",
+    "accountId": "Account ID",
+    "customer": "Customer",
+    "type": "Type",
+    "amount": "Amount",
+    "balanceAfter": "Balance After"
+  },
+  "filter": {
+    "button": "Filter",
+    "reset": "Reset",
+    "title": "Filter",
+    "account": "Account",
+    "allAccounts": "All accounts",
+    "cancel": "Cancel",
+    "apply": "Apply"
+  },
+  "toast": {
+    "listError": "Failed to load transactions"
+  }
+}
+

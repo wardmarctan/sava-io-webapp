@@ -1,0 +1,35 @@
+{
+  "title": "Setoran",
+  "subtitle": "Tambah saldo ke akun",
+  "loading": "Memuat form setoran...",
+  "form": {
+    "title": "Informasi Setoran",
+    "account": "Akun",
+    "selectAccount": "Pilih akun",
+    "depositDate": "Tanggal Setor",
+    "amount": "Jumlah",
+    "amountPlaceholder": "Rp 10.000.000",
+    "submit": "Kirim Setoran",
+    "submitting": "Mengirim..."
+  },
+  "summary": {
+    "title": "Ringkasan Akun",
+    "accountId": "ID Akun",
+    "customer": "Pelanggan",
+    "depositoType": "Tipe Deposito",
+    "startingBalance": "Saldo Awal",
+    "yearlyReturn": "Imbal Hasil Tahunan",
+    "monthlyReturn": "Imbal Hasil Bulanan",
+    "note": "Setoran akan menambah saldo akun Anda"
+  },
+  "validation": {
+    "required": "Mohon lengkapi semua kolom",
+    "amountPositive": "Jumlah harus lebih dari 0",
+    "dateNotFuture": "Tanggal tidak boleh melebihi hari ini"
+  },
+  "toast": {
+    "success": "Setoran berhasil",
+    "error": "Gagal melakukan setoran"
+  }
+}
+

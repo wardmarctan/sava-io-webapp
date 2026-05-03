@@ -1,8 +1,8 @@
-import type { DashboardTransaction } from '../lib/dashboard-data'
+import type { Transaction } from '@/lib/api/types/transaction/transaction'
 import { useTranslation } from 'react-i18next'
 
 type TransactionsTableProps = {
-  transactions: DashboardTransaction[]
+  transactions: Transaction[]
   onViewAll: () => void
 }
 
@@ -37,17 +37,17 @@ export function TransactionsTable({ transactions, onViewAll }: Readonly<Transact
           </thead>
           <tbody>
             {transactions.map((transaction) => (
-              <tr key={`${transaction.accountId}-${transaction.date}`} className="border-t border-[#e8daef] text-slate-700">
-                <td className="px-4 py-3">{transaction.date}</td>
-                <td className="px-4 py-3 font-semibold text-slate-950">{transaction.accountId}</td>
+              <tr key={transaction.id} className="border-t border-[#e8daef] text-slate-700">
+                <td className="px-4 py-3">{transaction.transaction_date}</td>
+                <td className="px-4 py-3 font-semibold text-slate-950">{transaction.account_id}</td>
                 <td className="px-4 py-3">{transaction.customer}</td>
                 <td className="px-4 py-3">
                   <span className="rounded-full bg-[#f4edfb] px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[#4a1f6c]">
-                    {transaction.type}
+                    {transaction.transaction_type}
                   </span>
                 </td>
                 <td className="px-4 py-3 font-semibold">{transaction.amount}</td>
-                <td className="px-4 py-3 font-semibold">{transaction.balanceAfter}</td>
+                <td className="px-4 py-3 font-semibold">{transaction.ending_balance}</td>
               </tr>
             ))}
           </tbody>

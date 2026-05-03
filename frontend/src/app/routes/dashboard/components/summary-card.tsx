@@ -1,10 +1,9 @@
-import { CircleUserRound, WalletCards, Tags, DollarSign } from 'lucide-react'
+import { CircleUserRound, WalletCards, Tags } from 'lucide-react'
 
 const iconMap = {
   customer: CircleUserRound,
   account: WalletCards,
   tag: Tags,
-  money: DollarSign,
 } as const
 
 type SummaryCardProps = {

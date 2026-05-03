@@ -1,8 +1,8 @@
-import type { DashboardAccount } from '../lib/dashboard-data'
+import type { Account } from '@/lib/api/types/account/account'
 import { useTranslation } from 'react-i18next'
 
 type AccountsTableProps = {
-  accounts: DashboardAccount[]
+  accounts: Account[]
   onViewAll: () => void
 }
 
@@ -36,11 +36,11 @@ export function AccountsTable({ accounts, onViewAll }: Readonly<AccountsTablePro
           </thead>
           <tbody>
             {accounts.map((account) => (
-              <tr key={account.accountId} className="border-t border-[#e8daef] text-slate-700">
-                <td className="px-4 py-3 font-semibold text-slate-950">{account.accountId}</td>
+              <tr key={account.id} className="border-t border-[#e8daef] text-slate-700">
+                <td className="px-4 py-3 font-semibold text-slate-950">{account.account_id}</td>
                 <td className="px-4 py-3">{account.customer}</td>
-                <td className="px-4 py-3">{account.depositoType}</td>
-                <td className="px-4 py-3">{account.openingDate}</td>
+                <td className="px-4 py-3">{account.deposito_type}</td>
+                <td className="px-4 py-3">{account.created_at}</td>
                 <td className="px-4 py-3 font-semibold">{account.balance}</td>
               </tr>
             ))}

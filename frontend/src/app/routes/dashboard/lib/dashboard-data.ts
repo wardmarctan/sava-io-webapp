@@ -24,7 +24,6 @@ export const dashboardSummary = [
   { label: 'Total Customers', value: '12', icon: 'customer' },
   { label: 'Total Accounts', value: '18', icon: 'account' },
   { label: 'Deposito Types', value: '3', icon: 'tag' },
-  { label: 'Total Balance', value: 'Rp 185.000.000', icon: 'money' },
 ] as const
 
 export const dashboardAccounts: DashboardAccount[] = [

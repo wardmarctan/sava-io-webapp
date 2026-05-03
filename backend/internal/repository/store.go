@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"fmt"
 	"time"
 
 	"gorm.io/gorm"
@@ -20,6 +21,9 @@ func NewStore(db *gorm.DB) *Store {
 func SeedDatabase(db *gorm.DB) {
 	if db == nil {
 		return
+	}
+	if err := db.Migrator().DropTable(&entity.Transaction{}, &entity.Account{}); err != nil {
+		fmt.Println("Error dropping tables:", err)
 	}
 
 	if err := db.AutoMigrate(
@@ -77,11 +81,11 @@ func seedDepositoTypes(db *gorm.DB) {
 
 func seedAccounts(db *gorm.DB) {
 	accounts := []entity.Account{
-		{ID: 1, CustomerID: 1, DepositoTypeID: 3, Balance: 150000000, OpenedAt: mustParseDate("2026-04-30")},
-		{ID: 2, CustomerID: 2, DepositoTypeID: 2, Balance: 75000000, OpenedAt: mustParseDate("2026-02-15")},
-		{ID: 3, CustomerID: 3, DepositoTypeID: 1, Balance: 55000000, OpenedAt: mustParseDate("2025-03-19")},
-		{ID: 4, CustomerID: 4, DepositoTypeID: 3, Balance: 30000000, OpenedAt: mustParseDate("2025-08-18")},
-		{ID: 5, CustomerID: 5, DepositoTypeID: 2, Balance: 71500000, OpenedAt: mustParseDate("2026-01-17")},
+		{ID: 1, CustomerID: 1, DepositoTypeID: 3, Balance: 150000000, CreatedAt: mustParseDate("2026-04-30"), UpdatedAt: mustParseDate("2026-04-30")},
+		{ID: 2, CustomerID: 2, DepositoTypeID: 2, Balance: 75000000, CreatedAt: mustParseDate("2026-02-15"), UpdatedAt: mustParseDate("2026-02-15")},
+		{ID: 3, CustomerID: 3, DepositoTypeID: 1, Balance: 55000000, CreatedAt: mustParseDate("2025-03-19"), UpdatedAt: mustParseDate("2025-03-19")},
+		{ID: 4, CustomerID: 4, DepositoTypeID: 3, Balance: 30000000, CreatedAt: mustParseDate("2025-08-18"), UpdatedAt: mustParseDate("2025-08-18")},
+		{ID: 5, CustomerID: 5, DepositoTypeID: 2, Balance: 71500000, CreatedAt: mustParseDate("2026-01-17"), UpdatedAt: mustParseDate("2026-01-17")},
 	}
 	for _, account := range accounts {
 		var count int64

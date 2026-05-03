@@ -1,0 +1,55 @@
+{
+  "title": "Tipe Deposito",
+  "subtitle": "Kelola data tipe deposito",
+  "addDepositoType": "Tambah Tipe Deposito",
+  "searchPlaceholder": "Cari berdasarkan ID tipe atau nama...",
+  "results": "hasil",
+  "resultsPlural": "hasil",
+  "loading": "Memuat tipe deposito...",
+  "noRows": "Tidak ada tipe deposito ditemukan.",
+  "showing": "Menampilkan",
+  "of": "dari",
+  "singular": "tipe",
+  "plural": "tipe",
+  "page": "Halaman",
+  "rowsPerPage": "Baris per halaman",
+  "formatTypeId": "DEP-{{id}}",
+  "header": {
+    "typeId": "ID Tipe",
+    "name": "Nama",
+    "yearlyReturn": "Imbal Hasil Tahunan (Bunga)",
+    "actions": "Aksi"
+  },
+  "detail": {
+    "addTitle": "Tambah Tipe Deposito",
+    "editTitle": "Edit Tipe Deposito",
+    "addSubtitle": "Masukkan informasi tipe deposito baru",
+    "editSubtitle": "Perbarui informasi tipe deposito yang ada",
+    "loading": "Memuat tipe deposito...",
+    "nameLabel": "Nama",
+    "namePlaceholder": "contoh: Deposito Bronze",
+    "yearlyReturnLabel": "Imbal Hasil Tahunan (%)",
+    "yearlyReturnPlaceholder": "contoh: 3",
+    "cancel": "Batal",
+    "saving": "Menyimpan...",
+    "submitCreate": "Buat Tipe Deposito",
+    "submitEdit": "Simpan Perubahan",
+    "validationRequired": "Nama dan imbal hasil tahunan wajib diisi"
+  },
+  "delete": {
+    "title": "Hapus Tipe Deposito",
+    "confirm": "Apakah Anda yakin ingin menghapus <1>{{label}}</1>?",
+    "cancel": "Batal",
+    "deleting": "Menghapus...",
+    "delete": "Hapus"
+  },
+  "toast": {
+    "listError": "Gagal memuat tipe deposito",
+    "createSuccess": "Tipe deposito berhasil dibuat",
+    "createError": "Gagal membuat tipe deposito",
+    "updateSuccess": "Tipe deposito berhasil diperbarui",
+    "updateError": "Gagal memperbarui tipe deposito",
+    "deleteSuccess": "Tipe deposito berhasil dihapus",
+    "deleteError": "Gagal menghapus tipe deposito"
+  }
+}

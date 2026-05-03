@@ -7,9 +7,9 @@ export function QuickActions() {
 
   const actions = [
     { label: t('quickActions.addCustomer'), icon: UserRoundPlus, href: '/customers?action=create' },
-    { label: t('quickActions.addAccount'), icon: WalletCards, href: '#' },
-    { label: t('quickActions.addDepositoType'), icon: Tags, href: '#' },
-    { label: t('quickActions.deposit'), icon: ArrowDownToLine, href: '#' },
+    { label: t('quickActions.addAccount'), icon: WalletCards, href: '/accounts?action=create' },
+    { label: t('quickActions.addDepositoType'), icon: Tags, href: '/deposito-types?action=create' },
+    { label: t('quickActions.deposit'), icon: ArrowDownToLine, href: '/deposit' },
   ]
 
   return (

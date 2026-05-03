@@ -1,0 +1,55 @@
+{
+  "title": "Deposito Types",
+  "subtitle": "Manage deposito type data",
+  "addDepositoType": "Add Deposito Type",
+  "searchPlaceholder": "Search by type ID or name...",
+  "results": "result",
+  "resultsPlural": "results",
+  "loading": "Loading deposito types...",
+  "noRows": "No deposito types found.",
+  "showing": "Showing",
+  "of": "of",
+  "singular": "type",
+  "plural": "types",
+  "page": "Page",
+  "rowsPerPage": "Rows per page",
+  "formatTypeId": "DEP-{{id}}",
+  "header": {
+    "typeId": "Type ID",
+    "name": "Name",
+    "yearlyReturn": "Yearly Return (Bunga)",
+    "actions": "Actions"
+  },
+  "detail": {
+    "addTitle": "Add Deposito Type",
+    "editTitle": "Edit Deposito Type",
+    "addSubtitle": "Enter new deposito type information",
+    "editSubtitle": "Update existing deposito type information",
+    "loading": "Loading deposito type...",
+    "nameLabel": "Name",
+    "namePlaceholder": "e.g. Deposito Bronze",
+    "yearlyReturnLabel": "Yearly Return (%)",
+    "yearlyReturnPlaceholder": "e.g. 3",
+    "cancel": "Cancel",
+    "saving": "Saving...",
+    "submitCreate": "Create Deposito Type",
+    "submitEdit": "Save Changes",
+    "validationRequired": "Name and yearly return are required"
+  },
+  "delete": {
+    "title": "Delete Deposito Type",
+    "confirm": "Are you sure you want to delete <1>{{label}}</1>?",
+    "cancel": "Cancel",
+    "deleting": "Deleting...",
+    "delete": "Delete"
+  },
+  "toast": {
+    "listError": "Failed to load deposito types",
+    "createSuccess": "Deposito type created successfully",
+    "createError": "Failed to create deposito type",
+    "updateSuccess": "Deposito type updated successfully",
+    "updateError": "Failed to update deposito type",
+    "deleteSuccess": "Deposito type deleted successfully",
+    "deleteError": "Failed to delete deposito type"
+  }
+}

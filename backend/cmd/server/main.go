@@ -45,7 +45,7 @@ func main() {
 	customerController := controller.NewCustomerController(service.NewCustomerService(repository.NewCustomerRepository(store)))
 	accountController := controller.NewAccountController(service.NewAccountService(repository.NewAccountRepository(store)))
 	depositoTypeController := controller.NewDepositoTypeController(service.NewDepositoTypeService(repository.NewDepositoTypeRepository(store)))
-	transactionController := controller.NewTransactionController(service.NewTransactionService(repository.NewTransactionRepository(store)))
+	transactionController := controller.NewTransactionController(service.NewTransactionService(repository.NewTransactionRepository(store), repository.NewAccountRepository(store)))
 
 	authController.Routes(e)
 	healthController.Routes(e)

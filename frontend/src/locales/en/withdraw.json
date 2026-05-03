@@ -1,0 +1,41 @@
+{
+  "title": "Withdraw",
+  "subtitle": "Withdraw balance from account",
+  "loading": "Loading withdraw form...",
+  "form": {
+    "title": "Withdraw Information",
+    "account": "Account",
+    "selectAccount": "Select account",
+    "withdrawDate": "Withdraw Date",
+    "amount": "Amount",
+    "amountPlaceholder": "Rp 5.000.000",
+    "months": "# Months",
+    "monthsPlaceholder": "e.g. 3",
+    "calculate": "Calculate"
+  },
+  "result": {
+    "title": "Calculation Result",
+    "empty": "Fill the form then click Calculate.",
+    "startingBalance": "Starting Balance",
+    "monthlyReturn": "Monthly Return",
+    "months": "# Months",
+    "returnAmount": "Return Amount",
+    "endingBalance": "Ending Balance",
+    "formula": "Ending balance = Starting balance * # Months * Monthly Return - Withdraw Amount",
+    "confirm": "Confirm Withdraw",
+    "submitting": "Submitting..."
+  },
+  "validation": {
+    "required": "Please complete all fields",
+    "selectAccount": "Please select a valid account",
+    "amountPositive": "Amount must be greater than 0",
+    "monthsPositive": "Months must be greater than 0",
+    "insufficient": "Insufficient balance",
+    "dateNotFuture": "Date cannot be in the future"
+  },
+  "toast": {
+    "success": "Withdraw successful",
+    "error": "Failed to withdraw"
+  }
+}
+

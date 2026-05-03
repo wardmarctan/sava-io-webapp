@@ -1,0 +1,34 @@
+{
+  "title": "Riwayat Transaksi",
+  "subtitle": "Lihat semua transaksi",
+  "searchPlaceholder": "Cari berdasarkan ID akun atau nama pelanggan...",
+  "results": "hasil",
+  "resultsPlural": "hasil",
+  "loading": "Memuat transaksi...",
+  "noRows": "Tidak ada transaksi ditemukan.",
+  "showing": "Menampilkan",
+  "of": "dari",
+  "page": "Halaman",
+  "rowsPerPage": "Baris per halaman",
+  "header": {
+    "date": "Tanggal",
+    "accountId": "ID Akun",
+    "customer": "Pelanggan",
+    "type": "Tipe",
+    "amount": "Jumlah",
+    "balanceAfter": "Saldo Setelah"
+  },
+  "filter": {
+    "button": "Filter",
+    "reset": "Reset",
+    "title": "Filter",
+    "account": "Akun",
+    "allAccounts": "Semua akun",
+    "cancel": "Batal",
+    "apply": "Terapkan"
+  },
+  "toast": {
+    "listError": "Gagal memuat transaksi"
+  }
+}
+
